@@ -57,7 +57,7 @@ struct ContentView: View {
     }
 }
 
-// 習慣を追加するサブ画面
+//習慣を追加するサブ画面
 struct AddHabitView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
