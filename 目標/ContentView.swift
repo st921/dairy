@@ -14,6 +14,8 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var showingAddSheet = false
 
+    let themeColor = Color(red: 0.2, green: 0.8, blue: 1.0)
+    
     var body: some View {
         NavigationStack {
             List {
