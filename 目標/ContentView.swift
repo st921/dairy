@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    // データベースからHabitのリストを取得（作成日順）
+    //データベースからHabitのリストを取得（作成日順）
     @Query(sort: \Habit.creationDate) private var habits: [Habit]
     @Environment(\.modelContext) private var modelContext
     @State private var showingAddSheet = false
