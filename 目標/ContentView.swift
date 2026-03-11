@@ -56,7 +56,7 @@ struct ContentView: View {
                 .sheet(isPresented: $showingAddSheet) {
                     AddHabitView()
                 }
-                // 常にダークモードで表示（お好みで外してください）
+                //常にダークモードで表示（お好みで外してください）
                 .preferredColorScheme(.dark)
             }
         }
