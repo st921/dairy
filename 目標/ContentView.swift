@@ -13,7 +13,7 @@ struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @State private var showingAddSheet = false
 
-    // カフェモードのオンオフを保存（trueならカフェ、falseなら近未来）
+    //カフェモードのオンオフを保存（trueならカフェ、falseなら近未来）
     @AppStorage("isCafeMode") private var isCafeMode = false
 
     // テーマ別のカラー設定（computed property）
