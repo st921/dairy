@@ -16,7 +16,7 @@ struct ContentView: View {
     //カフェモードのオンオフを保存（trueならカフェ、falseなら近未来）
     @AppStorage("isCafeMode") private var isCafeMode = false
 
-    // テーマ別のカラー設定（computed property）
+    //テーマ別のカラー設定（computed property）
     var accentColor: Color {
         // カフェ：テラコッタ（レンガ色）、近未来：ネオンブルー
         isCafeMode ? Color(red: 0.8, green: 0.4, blue: 0.2) : Color(red: 0.2, green: 0.8, blue: 1.0)
