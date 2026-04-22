@@ -86,7 +86,61 @@ struct ContentView: View {
         }
     }
 }
+struct ProgressHeaderView: View {
+    var progress: Double
+    var completed: Int
+    var total: Int
+    var isCafeMode: Bool
+    var accentColor: Color
+    var textColor: Color
 
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Today's Progress")
+                    .font(.headline)
+                    .foregroundColor(textColor)
+                
+                Text(progress == 1.0 ? "完璧です！🎉" : "今日も頑張りましょう")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+            }
+            
+            Spacer()
+            
+            ZStack {
+                // 背景のグレーリング
+                Circle()
+                    .stroke(Color.gray.opacity(0.2), lineWidth: 12)
+                
+                // 達成度のカラーリング（アニメーション付き）
+                Circle()
+                    .trim(from: 0, to: CGFloat(progress)) // ここで円を切り取っています
+                    .stroke(accentColor, style: StrokeStyle(lineWidth: 12, lineCap: .round))
+                    .rotationEffect(.degrees(-90)) // 開始位置を12時の方向に合わせる
+                    // 近未来モードの時は光るエフェクト
+                    .shadow(color: isCafeMode ? .clear : accentColor.opacity(0.6), radius: 8, x: 0, y: 0)
+                    .animation(.spring(response: 0.8, dampingFraction: 0.7), value: progress)
+                
+                // 中央のテキスト
+                VStack {
+                    Text("\(Int(progress * 100))%")
+                        .font(.system(size: 22, weight: .bold, design: .rounded))
+                        .foregroundColor(accentColor)
+                    Text("\(completed)/\(total)")
+                        .font(.system(size: 10, weight: .semibold))
+                        .foregroundColor(.gray)
+                }
+            }
+            .frame(width: 100, height: 100)
+        }
+        .padding()
+        // カードとしての背景設定
+        .background(RoundedRectangle(cornerRadius: 25, style: .continuous).fill(isCafeMode ? Color.white : Color.white.opacity(0.05)))
+        .overlay(RoundedRectangle(cornerRadius: 25, style: .continuous).stroke(isCafeMode ? Color.clear : Color.white.opacity(0.1), lineWidth: 1))
+        .shadow(color: Color.black.opacity(isCafeMode ? 0.05 : 0.3), radius: isCafeMode ? 5 : 10, x: 0, y: 5)
+    }
+}
 // ---------------------------------------------------------
 // 詳細画面
 // ---------------------------------------------------------
